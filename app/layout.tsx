@@ -14,10 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Boilerplate - Modern UI",
-  description: "A beautiful Next.js boilerplate with shadcn/ui, Tailwind CSS, and Radix UI components",
-  keywords: ["Next.js", "React", "TypeScript", "shadcn/ui", "Tailwind CSS"],
-  authors: [{ name: "Your Name" }],
+  title: "Sherry - Modern UI Platform",
+  description: "A beautiful modern platform with shadcn/ui, Tailwind CSS, and Radix UI components",
+  keywords: ["Sherry", "Next.js", "React", "TypeScript", "shadcn/ui", "Tailwind CSS"],
+  authors: [{ name: "Sherry Team" }],
   viewport: "width=device-width, initial-scale=1",
 };
 
