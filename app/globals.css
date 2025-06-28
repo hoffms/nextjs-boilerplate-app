@@ -43,6 +43,24 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Screen-patched utilities for better mobile viewport handling */
+@layer utilities {
+  .min-h-screen-patched {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  .max-h-screen-patched {
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+  
+  .h-screen-patched {
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
