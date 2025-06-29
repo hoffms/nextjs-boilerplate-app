@@ -55,7 +55,7 @@ const CustomAvatar = React.forwardRef<HTMLDivElement, CustomAvatarProps>(
 
     // Get the shape component and calculate size
     const ShapeComp = allCustomShapes[avatarData.shapeIndex] as React.ComponentType<{ width: number; className?: string }>
-    const avatarSize = sizeMap[size] || 32
+    const avatarSize = sizeMap[size as keyof typeof sizeMap] || 32
     const shapeSize = Math.max(8, Math.floor(avatarSize * 0.4)) // 40% of avatar size, minimum 8px
 
     return (

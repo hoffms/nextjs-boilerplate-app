@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Menu, ChevronDown } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
 import { SherryLogo } from "@/components/sherry-logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface LayoutContentProps {
   children: React.ReactNode;
@@ -63,7 +64,8 @@ export function LayoutContent({ children }: LayoutContentProps) {
         </div>
         
         <div className="flex justify-end p-2">
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            <ThemeToggle />
             <Button variant="ghost" size="sm" className="h-7 px-3 text-sm">
               Sign In
             </Button>

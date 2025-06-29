@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { AvatarPattern } from "@/components/avatar-pattern"
 import { 
   ArrowRight, 
   Code, 
@@ -25,54 +26,40 @@ import {
   ExternalLink,
   Eye,
   Check,
-  BadgeCheck
+  BadgeCheck,
+  MessageCircle,
+  Send
 } from "lucide-react"
 import { Section } from "@/components/section"
 import Link from "next/link"
+import { SherryLogo } from "@/components/sherry-logo"
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20 py-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex flex-col items-center text-center space-y-8">
-            <div className="space-y-4">
-              <Badge variant="secondary" className="px-3 py-1">
-                <Star className="w-3 h-3 mr-1" />
-                Built with Next.js 15 & shadcn/ui
-              </Badge>
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                Modern UI
-                <span className="text-primary"> Boilerplate</span>
-              </h1>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                A beautiful, accessible, and customizable Next.js boilerplate with shadcn/ui components, 
-                Tailwind CSS, and Radix UI primitives for building modern web applications.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="px-8">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="lg" className="px-8">
-                <Download className="mr-2 h-4 w-4" />
-                View on GitHub
-              </Button>
-            </div>
-            <div className="flex items-center gap-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                <span>1,000+ developers</span>
+      <section className="relative overflow-hidden py-24">
+        <div className="max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
+          <SherryLogo width={56} height={52} className="mb-8 mx-auto" />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Which mini dApp do you want to publish today?</h1>
+          <div className="w-full">
+            <div className="flex flex-col items-center">
+              <div className="w-full bg-background border rounded-xl shadow-sm flex items-center px-4 py-3 mb-4">
+                <input
+                  type="text"
+                  placeholder="Describe your mini dApp idea…"
+                  className="flex-1 bg-transparent outline-none text-base sm:text-lg placeholder:text-muted-foreground"
+                />
+                <button className="ml-2 p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
+                  <Send className="h-5 w-5 text-primary" />
+                </button>
               </div>
-              <div className="flex items-center gap-2">
-                <Star className="h-4 w-4" />
-                <span>500+ stars</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Download className="h-4 w-4" />
-                <span>10k+ downloads</span>
+              <div className="flex flex-wrap gap-2 justify-center">
+                <button className="px-4 py-1 rounded-full bg-muted text-sm hover:bg-primary/10 transition">What can I publish?</button>
+                <button className="px-4 py-1 rounded-full bg-muted text-sm hover:bg-primary/10 transition">Launch a token</button>
+                <button className="px-4 py-1 rounded-full bg-muted text-sm hover:bg-primary/10 transition">Create a voting app</button>
+                <button className="px-4 py-1 rounded-full bg-muted text-sm hover:bg-primary/10 transition">NFT gallery</button>
+                <button className="px-4 py-1 rounded-full bg-muted text-sm hover:bg-primary/10 transition">Analytics dashboard</button>
               </div>
             </div>
           </div>
@@ -89,9 +76,7 @@ export default function Home() {
             <Link href="/templates/dashboard" className="block">
               <Card className="hover:border-primary hover:bg-muted/40 transition-all flex flex-col justify-between h-full cursor-pointer">
                 {/* Logo/Image Section */}
-                <div className="relative h-32 bg-gradient-to-br from-sherryfluor-400 via-sherrypurple-500 to-sherryfluor-600 rounded-t-xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                </div>
+                <AvatarPattern baseValue="Dashboard" size="sm" />
                 
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -116,9 +101,7 @@ export default function Home() {
             <Link href="/templates/community" className="block">
               <Card className="hover:border-primary hover:bg-muted/40 transition-all flex flex-col justify-between h-full cursor-pointer">
                 {/* Logo/Image Section */}
-                <div className="relative h-32 bg-gradient-to-br from-sherrypurple-400 via-sherryfluor-300 to-sherrypurple-600 rounded-t-xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                </div>
+                <AvatarPattern baseValue="Community" size="sm" />
                 
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -143,9 +126,7 @@ export default function Home() {
             <Link href="/templates/analytics" className="block">
               <Card className="hover:border-primary hover:bg-muted/50 transition-all flex flex-col justify-between h-full cursor-pointer">
                 {/* Logo/Image Section */}
-                <div className="relative h-32 bg-gradient-to-br from-sherryfluor-300 via-sherrypurple-400 to-sherryfluor-500 rounded-t-xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                </div>
+                <AvatarPattern baseValue="Analytics" size="sm" />
                 
                 <CardHeader>
                   <div className="flex items-center justify-between">

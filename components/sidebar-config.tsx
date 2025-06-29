@@ -36,7 +36,7 @@ export const sidebarSections: SidebarSection[] = [
   {
     items: [
       {
-        label: "My MiniApps",
+        label: "My Mini dApps",
         href: "/miniapps",
         icon: () => <AppWindow size={16} />,
       },
@@ -51,7 +51,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Discover",
     items: [
       {
-        label: "Community MiniApps",
+        label: "Community Mini dApps",
         href: "/community",
         icon: () => <Users size={16} />,
       },

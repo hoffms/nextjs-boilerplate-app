@@ -21,9 +21,9 @@ import {
 import Link from "next/link"
 
 interface TemplateDetailsPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Template data - in a real app, this would come from a database
@@ -50,7 +50,7 @@ const templateData = {
       "SEO optimized",
       "Performance optimized"
     ],
-    gradient: "from-sherryfluor-400 via-sherrypurple-500 to-sherryfluor-600"
+    gradient: "from-sherrypurple-400 via-sherrypurple-500 to-sherrypurple-600"
   },
   "community": {
     title: "Community Template",
@@ -74,7 +74,7 @@ const templateData = {
       "Social interactions",
       "Analytics dashboard"
     ],
-    gradient: "from-sherrypurple-400 via-sherryfluor-300 to-sherrypurple-600"
+    gradient: "from-sherrypurple-400 via-sherrypurple-300 to-sherrypurple-600"
   },
   "analytics": {
     title: "Analytics Template",
@@ -98,12 +98,13 @@ const templateData = {
       "User behavior tracking",
       "Custom reporting"
     ],
-    gradient: "from-sherryfluor-300 via-sherrypurple-400 to-sherryfluor-500"
+    gradient: "from-sherrypurple-300 via-sherrypurple-400 to-sherrypurple-500"
   }
 }
 
-export default function TemplateDetailsPage({ params }: TemplateDetailsPageProps) {
-  const template = templateData[params.slug as keyof typeof templateData]
+export default async function TemplateDetailsPage({ params }: TemplateDetailsPageProps) {
+  const { slug } = await params
+  const template = templateData[slug as keyof typeof templateData]
   
   if (!template) {
     return (
@@ -139,7 +140,7 @@ export default function TemplateDetailsPage({ params }: TemplateDetailsPageProps
         <div className="lg:col-span-2 space-y-8">
           {/* Hero Section */}
           <div className="space-y-6">
-            <div className="relative h-64 bg-gradient-to-br from-sherryfluor-400 via-sherrypurple-500 to-sherryfluor-600 rounded-xl overflow-hidden">
+            <div className="relative h-64 bg-gradient-to-br from-sherrypurple-400 via-sherrypurple-500 to-sherrypurple-600 rounded-xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
             
