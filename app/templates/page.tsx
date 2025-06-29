@@ -2,6 +2,7 @@
 
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { VerificationBadge } from "@/components/ui/verification-badge"
 import { AvatarPattern } from "@/components/avatar-pattern"
 import { BadgeCheck } from "lucide-react"
 import Link from "next/link"
@@ -109,10 +110,7 @@ export default function TemplatesPage() {
                       <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
                         <div className="max-w-20 truncate">{tpl.avatar}</div>
                       </div>
-                      <span className="h-5 pl-1 pr-2 bg-accent rounded-full inline-flex justify-center items-center gap-1">
-                        <BadgeCheck className="w-4 h-4 text-accent-foreground" />
-                        <span className="justify-end text-accent-foreground text-xs font-bold font-mono leading-tight lowercase">verified</span>
-                      </span>
+                      <VerificationBadge status="verified" />
                     </div>
                   </div>
                   <CardTitle>{tpl.title}</CardTitle>

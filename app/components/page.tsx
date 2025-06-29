@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { VerificationBadge } from "@/components/ui/verification-badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -175,6 +176,16 @@ export default function ComponentsPage() {
                   <Badge variant="outline">Outline</Badge>
                 </div>
                 
+                <div className="space-y-2">
+                  <Label>Verification Badges</Label>
+                  <div className="flex flex-wrap gap-2">
+                    <VerificationBadge status="verified" />
+                    <VerificationBadge status="not-verified" />
+                    <VerificationBadge status="verified" showIcon={false} />
+                    <VerificationBadge status="not-verified" showIcon={false} />
+                  </div>
+                </div>
+                
                 <div className="flex items-center space-x-4">
                   <Avatar>
                     <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
@@ -206,7 +217,7 @@ export default function ComponentsPage() {
                     <p className="text-sm text-muted-foreground">Software Engineer</p>
                     <div className="flex items-center gap-2">
                       <Badge variant="secondary">Pro</Badge>
-                      <Badge variant="outline">Verified</Badge>
+                      <VerificationBadge status="verified" />
                     </div>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { VerificationBadge } from "@/components/ui/verification-badge"
 import { 
   ArrowLeft, 
   Download, 
@@ -151,10 +152,7 @@ export default async function TemplateDetailsPage({ params }: TemplateDetailsPag
                 <p className="text-muted-foreground">{template.longDescription}</p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-6 pl-2 pr-3 bg-accent rounded-full inline-flex justify-center items-center gap-1">
-                  <BadgeCheck className="w-4 h-4 text-accent-foreground" />
-                  <span className="text-accent-foreground text-xs font-bold font-mono leading-tight lowercase">verified</span>
-                </span>
+                <VerificationBadge status="verified" />
               </div>
             </div>
           </div>

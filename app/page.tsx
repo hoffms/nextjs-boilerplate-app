@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { VerificationBadge } from "@/components/ui/verification-badge"
 import { AvatarPattern } from "@/components/avatar-pattern"
 import { 
   ArrowRight, 
@@ -85,10 +86,7 @@ export default function Home() {
                       <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
                         <div className="max-w-20 truncate">LFJ</div>
                       </div>
-                      <span className="h-5 pl-1 pr-2 bg-accent rounded-full inline-flex justify-center items-center gap-1">
-                        <BadgeCheck className="w-4 h-4 text-accent-foreground" />
-                        <span className="justify-end text-accent-foreground text-xs font-bold font-mono leading-tight lowercase">verified</span>
-                      </span>
+                      <VerificationBadge status="verified" />
                     </div>
                   </div>
                   <CardTitle>Dashboard Template</CardTitle>
@@ -110,10 +108,7 @@ export default function Home() {
                       <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
                         <div className="max-w-20 truncate">Sherry</div>
                       </div>
-                      <span className="h-5 pl-1 pr-2 bg-accent rounded-full inline-flex justify-center items-center gap-1">
-                        <BadgeCheck className="w-4 h-4 text-accent-foreground" />
-                        <span className="justify-end text-accent-foreground text-xs font-bold font-mono leading-tight lowercase">verified</span>
-                      </span>
+                      <VerificationBadge status="verified" />
                     </div>
                   </div>
                   <CardTitle>Community Template</CardTitle>
@@ -135,10 +130,7 @@ export default function Home() {
                       <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
                         <div className="max-w-20 truncate">Wormhole</div>
                       </div>
-                      <span className="h-5 pl-1 pr-2 bg-accent rounded-full inline-flex justify-center items-center gap-1">
-                        <BadgeCheck className="w-4 h-4 text-accent-foreground" />
-                        <span className="justify-end text-accent-foreground text-xs font-bold font-mono leading-tight lowercase">verified</span>
-                      </span>
+                      <VerificationBadge status="verified" />
                     </div>
                   </div>
                   <CardTitle>Analytics Template</CardTitle>
