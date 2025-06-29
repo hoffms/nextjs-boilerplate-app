@@ -28,7 +28,7 @@ export const sidebarSections: SidebarSection[] = [
     items: [
       {
         label: "New",
-        href: "/new",
+        href: "/",
         icon: () => <Plus size={16} />,
       },
     ],
