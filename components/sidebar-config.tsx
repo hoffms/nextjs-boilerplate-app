@@ -1,6 +1,14 @@
 // This file is now .tsx to support JSX in config
 import React from "react";
-import { MessageSquare, Search, Grid3X3, Clock, Users } from "lucide-react";
+import { 
+  Plus, 
+  LayoutDashboard, 
+  AppWindow, 
+  FileText, 
+  Users, 
+  TrendingUp, 
+  Trophy
+} from "lucide-react";
 
 export interface SidebarNavItem {
   label: string;
@@ -18,28 +26,53 @@ export const sidebarSections: SidebarSection[] = [
   {
     items: [
       {
-        label: "New Chat",
-        href: "/chat",
-        icon: () => <MessageSquare size={16} />,
+        label: "New",
+        href: "/new",
+        icon: () => <Plus size={16} />,
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        label: "My MiniApps",
+        href: "/miniapps",
+        icon: () => <AppWindow size={16} />,
       },
       {
-        label: "Search",
-        icon: () => <Search size={16} />,
+        label: "My Dashboard",
+        href: "/dashboard",
+        icon: () => <LayoutDashboard size={16} />,
       },
+    ],
+  },
+  {
+    title: "Discover",
+    items: [
       {
-        label: "Projects",
-        href: "/chat/projects",
-        icon: () => <Grid3X3 size={16} />,
-      },
-      {
-        label: "Recents",
-        href: "/chat/history",
-        icon: () => <Clock size={16} />,
-      },
-      {
-        label: "Community",
+        label: "Community MiniApps",
         href: "/community",
         icon: () => <Users size={16} />,
+      },
+      {
+        label: "Templates",
+        href: "/templates",
+        icon: () => <FileText size={16} />,
+      },
+    ],
+  },
+  {
+    title: "Podium",
+    items: [
+      {
+        label: "Market Leaderboard",
+        href: "/market-leaderboards",
+        icon: () => <TrendingUp size={16} />,
+      },
+      {
+        label: "Users Leaderboard",
+        href: "/users-leaderboards",
+        icon: () => <Trophy size={16} />,
       },
     ],
   },

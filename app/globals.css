@@ -37,6 +37,33 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  
+  /* Custom Sherry Purple Palette */
+  --color-sherrypurple-50: var(--sherrypurple-50);
+  --color-sherrypurple-100: var(--sherrypurple-100);
+  --color-sherrypurple-200: var(--sherrypurple-200);
+  --color-sherrypurple-300: var(--sherrypurple-300);
+  --color-sherrypurple-400: var(--sherrypurple-400);
+  --color-sherrypurple-500: var(--sherrypurple-500);
+  --color-sherrypurple-600: var(--sherrypurple-600);
+  --color-sherrypurple-700: var(--sherrypurple-700);
+  --color-sherrypurple-800: var(--sherrypurple-800);
+  --color-sherrypurple-900: var(--sherrypurple-900);
+  --color-sherrypurple-950: var(--sherrypurple-950);
+  
+  /* Custom Sherry Fluor (Lime) Palette */
+  --color-sherryfluor-50: var(--sherryfluor-50);
+  --color-sherryfluor-100: var(--sherryfluor-100);
+  --color-sherryfluor-200: var(--sherryfluor-200);
+  --color-sherryfluor-300: var(--sherryfluor-300);
+  --color-sherryfluor-400: var(--sherryfluor-400);
+  --color-sherryfluor-500: var(--sherryfluor-500);
+  --color-sherryfluor-600: var(--sherryfluor-600);
+  --color-sherryfluor-700: var(--sherryfluor-700);
+  --color-sherryfluor-800: var(--sherryfluor-800);
+  --color-sherryfluor-900: var(--sherryfluor-900);
+  --color-sherryfluor-950: var(--sherryfluor-950);
+  
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -92,18 +119,18 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
+  --primary: var(--sherryfluor-600);
+  --primary-foreground: oklch(0.1 0.25 140);
+  --secondary: oklch(0.96 0.002 0);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
+  --muted: oklch(0.96 0.002 0);
+  --muted-foreground: oklch(0.45 0.01 0);
+  --accent: oklch(0.96 0.002 0);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
+  --border: oklch(0.9 0.003 0);
+  --input: oklch(0.9 0.003 0);
+  --ring: var(--sherryfluor-600);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -111,12 +138,38 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-primary: var(--sherryfluor-600);
+  --sidebar-primary-foreground: oklch(0.1 0.25 140);
+  --sidebar-accent: oklch(0.96 0.002 0);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  --sidebar-border: oklch(0.9 0.003 0);
+  --sidebar-ring: var(--sherryfluor-600);
+  
+  /* Custom Sherry Purple Palette */
+  --sherrypurple-50: #F1F0FA;
+  --sherrypurple-100: #E4E1F4;
+  --sherrypurple-200: #C6C0E8;
+  --sherrypurple-300: #ABA2DD;
+  --sherrypurple-400: #8C80D1;
+  --sherrypurple-500: #7162C6;
+  --sherrypurple-600: #5443B7;
+  --sherrypurple-700: #41348E;
+  --sherrypurple-800: #271F56;
+  --sherrypurple-900: #161231;
+  --sherrypurple-950: #0A0816;
+  
+  /* Custom Sherry Fluor (Lime) Palette */
+  --sherryfluor-50: #FBFDED;
+  --sherryfluor-100: #F6FBDA;
+  --sherryfluor-200: #EFF8BA;
+  --sherryfluor-300: #E6F495;
+  --sherryfluor-400: #DEF174;
+  --sherryfluor-500: #D6ED51;
+  --sherryfluor-600: #C8E718;
+  --sherryfluor-700: #94AB12;
+  --sherryfluor-800: #64740C;
+  --sherryfluor-900: #303706;
+  --sherryfluor-950: #181C03;
 }
 
 .dark {
@@ -126,18 +179,18 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
+  --primary: var(--sherryfluor-500);
+  --primary-foreground: oklch(0.1 0.25 140);
+  --secondary: oklch(0.25 0.003 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
+  --muted: oklch(0.25 0.003 0);
+  --muted-foreground: oklch(0.65 0.008 0);
+  --accent: oklch(0.25 0.003 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
+  --ring: var(--sherryfluor-500);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -145,12 +198,38 @@
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-primary: var(--sherryfluor-500);
+  --sidebar-primary-foreground: oklch(0.1 0.25 140);
+  --sidebar-accent: oklch(0.25 0.003 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
+  --sidebar-ring: var(--sherryfluor-500);
+  
+  /* Custom Sherry Purple Palette - Dark Mode (same values for consistency) */
+  --sherrypurple-50: #F1F0FA;
+  --sherrypurple-100: #E4E1F4;
+  --sherrypurple-200: #C6C0E8;
+  --sherrypurple-300: #ABA2DD;
+  --sherrypurple-400: #8C80D1;
+  --sherrypurple-500: #7162C6;
+  --sherrypurple-600: #5443B7;
+  --sherrypurple-700: #41348E;
+  --sherrypurple-800: #271F56;
+  --sherrypurple-900: #161231;
+  --sherrypurple-950: #0A0816;
+  
+  /* Custom Sherry Fluor (Lime) Palette - Dark Mode (same values for consistency) */
+  --sherryfluor-50: #FBFDED;
+  --sherryfluor-100: #F6FBDA;
+  --sherryfluor-200: #EFF8BA;
+  --sherryfluor-300: #E6F495;
+  --sherryfluor-400: #DEF174;
+  --sherryfluor-500: #D6ED51;
+  --sherryfluor-600: #C8E718;
+  --sherryfluor-700: #94AB12;
+  --sherryfluor-800: #64740C;
+  --sherryfluor-900: #303706;
+  --sherryfluor-950: #181C03;
 }
 
 @layer base {
