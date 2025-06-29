@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Dice1 } from "lucide-react"
-import * as Shapes from "@/src/shapes"
+import * as Shapes from "@/components/custom/shapes"
 
 export default function AvatarDemoPage() {
   const [avatarInput, setAvatarInput] = useState("John Doe")
@@ -334,15 +334,18 @@ export default function AvatarDemoPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
                 {Object.entries(Shapes)
                   .filter(([key]) => key.startsWith("Shape"))
-                  .map(([key, ShapeComp]) => (
-                    <div
-                      key={key}
-                      className="flex flex-col items-center p-4 bg-muted/50 rounded-lg border border-border/50 shadow-sm"
-                    >
-                      <ShapeComp width={48} className="text-muted-foreground/60" />
-                      <span className="text-xs text-muted-foreground/80 mt-2">{key}</span>
-                    </div>
-                  ))}
+                  .map(([key, ShapeComp]) => {
+                    const Comp = ShapeComp as React.ComponentType<{ width: number; className?: string }>;
+                    return (
+                      <div
+                        key={key}
+                        className="flex flex-col items-center p-4 bg-muted/50 rounded-lg border border-border/50 shadow-sm"
+                      >
+                        <Comp width={48} className="text-muted-foreground/60" />
+                        <span className="text-xs text-muted-foreground/80 mt-2">{key}</span>
+                      </div>
+                    );
+                  })}
               </div>
             </CardContent>
           </Card>

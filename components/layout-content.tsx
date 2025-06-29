@@ -2,86 +2,120 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CustomAvatar } from "@/components/custom/custom-avatar";
-import { SherryBadge } from "@/components/custom/sherry-badge";
-import { Separator } from "@/components/ui/separator";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
-import { SherryLogo } from "@/components/custom/sherry-logo";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import { Header, guestHeaderConfig, loggedHeaderConfig } from "./header";
+import { DevMenu } from "@/components/dev-menu";
+import { ErrorBoundary } from "./error-boundary";
 
 interface LayoutContentProps {
   children: React.ReactNode;
+  // Auth state props that can be passed through
+  authProps?: {
+    isAuthenticated?: boolean;
+    user?: {
+      name: string;
+      email: string;
+      avatar?: string;
+    };
+    currentWorkspace?: string;
+    workspaces?: Array<{ id: string; name: string; type: string }>;
+    notificationCount?: number;
+    onSignIn?: () => void;
+    onSignUp?: () => void;
+    onSignOut?: () => void;
+    onWorkspaceChange?: (workspaceId: string) => void;
+    onNotificationsClick?: () => void;
+  };
 }
 
-export function LayoutContent({ children }: LayoutContentProps) {
+export function LayoutContent({ children, authProps }: LayoutContentProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  
+  // Dev auth state management
+  const [devAuthState, setDevAuthState] = useState({
+    isAuthenticated: false,
+    user: undefined as any
+  });
+
+  // Mock auth handlers for dev testing
+  const handleSignIn = () => {
+    setDevAuthState({
+      isAuthenticated: true,
+      user: {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        avatar: undefined
+      }
+    });
+  };
+
+  const handleSignUp = () => {
+    setDevAuthState({
+      isAuthenticated: true,
+      user: {
+        name: "New User",
+        email: "newuser@example.com",
+        avatar: undefined
+      }
+    });
+  };
+
+  const handleSignOut = () => {
+    setDevAuthState({
+      isAuthenticated: false,
+      user: undefined
+    });
+  };
+  
+  // Use dev auth state if no auth props provided, otherwise use provided props
+  const finalAuthProps = authProps || {
+    isAuthenticated: devAuthState.isAuthenticated,
+    user: devAuthState.user,
+    currentWorkspace: devAuthState.isAuthenticated ? devAuthState.user?.name || "Personal" : undefined,
+    workspaces: devAuthState.isAuthenticated ? [
+      { 
+        id: "personal", 
+        name: devAuthState.user?.name || "Personal", 
+        type: "personal" 
+      }
+    ] : [],
+    notificationCount: devAuthState.isAuthenticated ? 3 : 0,
+    onSignIn: handleSignIn,
+    onSignUp: handleSignUp,
+    onSignOut: handleSignOut,
+    onWorkspaceChange: (workspaceId: string) => {
+      console.log('Switching to workspace:', workspaceId);
+      // TODO: Implement actual workspace switching
+    },
+    onNotificationsClick: () => {
+      // TODO: Implement notifications panel
+      console.log('Notifications clicked');
+    }
+  };
+
+  // Simple header configuration based on auth state
+  const headerConfig = finalAuthProps.isAuthenticated ? loggedHeaderConfig : guestHeaderConfig;
 
   useEffect(() => {
     setIsInitialized(true);
   }, []);
 
+  // Handle auth state changes from dev menu
+  const handleAuthStateChange = (isAuthenticated: boolean, user?: any) => {
+    setDevAuthState({ isAuthenticated, user });
+  };
+
   return (
     <div className="h-screen bg-background sm:bg-muted flex w-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex h-14 shrink-0 items-center justify-between gap-3 px-3 py-2 sm:h-11 sm:px-2">
-        <div className="flex min-w-0 flex-1 items-center">
-          <a href="/" className="mr-3">
-            <SherryLogo width={20} height={20} />
-          </a>
-
-          <Separator orientation="vertical" className="h-6 mr-3" />
-
-          {/* Forward slash separator */}
-          <span className="text-muted-foreground mx-1">/</span>
-
-          {/* User Profile Section */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 px-2"
-              >
-                <CustomAvatar 
-                  value="Personal User" 
-                  size="sm" 
-                  className="mr-2"
-                />
-                <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
-                  <div className="max-w-20 truncate">Personal</div>
-                  <SherryBadge variant="sherrypurpleLight" className="ml-1.5 h-[16px] px-1.5 text-xs">
-                    Beta
-                  </SherryBadge>
-                </div>
-                <ChevronDown className="ml-1 text-gray-500" size={14} />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="w-[240px]" sideOffset={12}>
-              <DropdownMenuLabel>Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <div className="px-3 py-2 text-sm text-muted-foreground">
-                You have <span className="font-semibold text-primary">beta access</span> to this app.
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-        
-        <div className="flex justify-end p-2">
-          <div className="flex gap-2 items-center">
-            <ThemeToggle />
-            <Button variant="ghost" size="sm" className="h-7 px-3 text-sm">
-              Sign In
-            </Button>
-            <Button size="sm" className="h-7 px-3 text-sm">
-              Sign Up
-            </Button>
-          </div>
-        </div>
-      </header>
+      <ErrorBoundary>
+        <Header 
+          config={headerConfig}
+          {...finalAuthProps}
+        />
+      </ErrorBoundary>
 
       {/* Main content with sidebar */}
       <div className="flex h-full overflow-hidden relative">
@@ -114,6 +148,14 @@ export function LayoutContent({ children }: LayoutContentProps) {
           </main>
         </div>
       </div>
+
+      {/* Dev Menu - only show in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <DevMenu
+          onAuthStateChange={handleAuthStateChange}
+          currentAuthState={devAuthState}
+        />
+      )}
     </div>
   );
 } 

@@ -58,6 +58,13 @@ const CustomAvatar = React.forwardRef<HTMLDivElement, CustomAvatarProps>(
     const avatarSize = sizeMap[size as keyof typeof sizeMap] || 32
     const shapeSize = Math.max(8, Math.floor(avatarSize * 0.4)) // 40% of avatar size, minimum 8px
 
+    // Safety check: if ShapeComp is undefined, use a fallback shape
+    const SafeShapeComp = ShapeComp || (() => (
+      <svg width={shapeSize} height={shapeSize} viewBox="0 0 32 32" fill="currentColor">
+        <circle cx="16" cy="16" r="8" />
+      </svg>
+    ))
+
     return (
       <div
         ref={ref}
@@ -77,7 +84,7 @@ const CustomAvatar = React.forwardRef<HTMLDivElement, CustomAvatarProps>(
               transform: `rotate(${avatarData.shapeRotation}deg)`
             }}
           >
-            <ShapeComp width={shapeSize} />
+            <SafeShapeComp width={shapeSize} />
           </div>
         </div>
       </div>

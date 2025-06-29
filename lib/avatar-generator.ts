@@ -2,7 +2,11 @@
 // Generates unique, deterministic gradient avatars from text input
 
 import * as React from 'react'
-import * as CustomShapes from '../src/shapes'
+import { 
+  Shape1, Shape2, Shape3, Shape4, Shape5, Shape6, Shape7, Shape8, Shape9, Shape10,
+  Shape11, Shape12, Shape13, Shape14, Shape15, Shape16, Shape17, Shape18, Shape19, Shape20,
+  Shape21, Shape22, Shape23, Shape24, Shape25, Shape26, Shape27, Shape28, Shape29, Shape30
+} from '@/components/custom/shapes'
 
 export interface AvatarConfig {
   value: string
@@ -90,9 +94,11 @@ function getNumberFromHash(hash: number, max: number): number {
 }
 
 // Get all shape components as an array, filtering out non-function values
-export const allCustomShapes = Object.values(CustomShapes).filter(
-  (shape) => typeof shape === 'function'
-) as Array<React.ComponentType<{ width: number; className?: string }>> 
+export const allCustomShapes = [
+  Shape1, Shape2, Shape3, Shape4, Shape5, Shape6, Shape7, Shape8, Shape9, Shape10,
+  Shape11, Shape12, Shape13, Shape14, Shape15, Shape16, Shape17, Shape18, Shape19, Shape20,
+  Shape21, Shape22, Shape23, Shape24, Shape25, Shape26, Shape27, Shape28, Shape29, Shape30
+] as Array<React.ComponentType<{ width: number; className?: string }>>
 
 // Generate avatar data from text input
 export function generateAvatar(config: AvatarConfig): AvatarData {
