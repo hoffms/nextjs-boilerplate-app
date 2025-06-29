@@ -1,6 +1,21 @@
-# Custom Avatar Generator Guide
+# Custom Avatar Guide
 
-This document explains our custom avatar generation system that creates unique, deterministic avatars from text input.
+This guide explains how to use the CustomAvatar component in your Sherry application.
+
+## Basic Usage
+
+```tsx
+import { CustomAvatar } from "@/components/custom/custom-avatar"
+
+function MyComponent() {
+  return (
+    <CustomAvatar 
+      value="John Doe" 
+      size="md" 
+    />
+  )
+}
+```
 
 ## 🎨 **Overview**
 
@@ -19,7 +34,7 @@ Our custom avatar generator creates beautiful, unique avatars from any text inpu
 
 ### Basic Usage
 ```tsx
-import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { CustomAvatar } from "@/components/custom/custom-avatar"
 
 // Simple usage
 <CustomAvatar value="John Doe" />
@@ -136,22 +151,34 @@ function hashString(str: string): number {
 
 ### Size Comparison
 ```tsx
-<div className="flex gap-4">
-  <CustomAvatar value="User" size="sm" />
-  <CustomAvatar value="User" size="md" />
-  <CustomAvatar value="User" size="lg" />
-  <CustomAvatar value="User" size="xl" />
-  <CustomAvatar value="User" size="2xl" />
-</div>
+import { CustomAvatar } from "@/components/custom/custom-avatar"
+
+function AvatarExample() {
+  return (
+    <div className="flex gap-4 items-center">
+      <CustomAvatar value="Alice Johnson" size="sm" />
+      <CustomAvatar value="Bob Smith" size="md" />
+      <CustomAvatar value="Carol Davis" size="lg" />
+      <CustomAvatar value="David Wilson" size="xl" />
+      <CustomAvatar value="Eve Brown" size="2xl" />
+    </div>
+  )
+}
 ```
 
 ### Style Comparison
 ```tsx
-<div className="flex gap-4">
-  <CustomAvatar value="User" style="default" />
-  <CustomAvatar value="User" style="rounded" />
-  <CustomAvatar value="User" style="square" />
-</div>
+import { CustomAvatar } from "@/components/custom/custom-avatar"
+
+function StyleComparison() {
+  return (
+    <div className="flex gap-4">
+      <CustomAvatar value="User" style="default" />
+      <CustomAvatar value="User" style="rounded" />
+      <CustomAvatar value="User" style="square" />
+    </div>
+  )
+}
 ```
 
 ## 🔧 **Advanced Usage**
@@ -207,7 +234,7 @@ import { Avvvatars } from "@/components/ui/avvvatars"
 <Avvvatars value="User" />
 
 // New (custom implementation)
-import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { CustomAvatar } from "@/components/custom/custom-avatar"
 <CustomAvatar value="User" />
 ```
 

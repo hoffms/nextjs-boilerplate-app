@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CustomAvatar } from "@/components/ui/custom-avatar"
-import { VerificationBadge } from "@/components/ui/verification-badge"
+import { CustomAvatar } from "@/components/custom/custom-avatar"
+import { VerificationBadge } from "@/components/custom/verification-badge"
 import { 
   ArrowLeft, 
   Download, 

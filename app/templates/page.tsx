@@ -1,13 +1,13 @@
 "use client"
 
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { CustomAvatar } from "@/components/ui/custom-avatar"
-import { VerificationBadge } from "@/components/ui/verification-badge"
-import { AvatarPattern } from "@/components/avatar-pattern"
+import { CustomAvatar } from "@/components/custom/custom-avatar"
+import { VerificationBadge } from "@/components/custom/verification-badge"
+import { AvatarPattern } from "@/components/custom/avatar-pattern"
 import { BadgeCheck } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { SherryLogo } from "@/components/sherry-logo"
+import { SherryLogo } from "@/components/custom/sherry-logo"
 import { Button } from "@/components/ui/button"
 
 const templates = [

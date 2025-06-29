@@ -6,9 +6,10 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CustomAvatar } from "@/components/ui/custom-avatar"
-import { VerificationBadge } from "@/components/ui/verification-badge"
-import { AvatarPattern } from "@/components/avatar-pattern"
+import { CustomAvatar } from "@/components/custom/custom-avatar"
+import { SherryBadge } from "@/components/custom/sherry-badge"
+import { VerificationBadge } from "@/components/custom/verification-badge"
+import { AvatarPattern } from "@/components/custom/avatar-pattern"
 import { 
   ArrowRight, 
   Code, 
@@ -33,7 +34,7 @@ import {
 } from "lucide-react"
 import { Section } from "@/components/section"
 import Link from "next/link"
-import { SherryLogo } from "@/components/sherry-logo"
+import { SherryLogo } from "@/components/custom/sherry-logo"
 
 export default function Home() {
   return (
@@ -342,9 +343,9 @@ export default function Home() {
                         <div className="text-sm text-muted-foreground">{protocol.tvl}</div>
                       </div>
                     </div>
-                    <Badge variant={protocol.change.startsWith('+') ? "sherryfluorLight" : "destructive"}>
+                    <SherryBadge variant={protocol.change.startsWith('+') ? "sherryfluorLight" : "destructive"}>
                       {protocol.change}
-                    </Badge>
+                    </SherryBadge>
                   </div>
                 ))}
               </CardContent>
@@ -381,9 +382,9 @@ export default function Home() {
                         <div className="text-sm text-muted-foreground">{token.symbol} • {token.cap}</div>
                       </div>
                     </div>
-                    <Badge variant={token.change.startsWith('+') ? "sherryfluorLight" : "destructive"}>
+                    <SherryBadge variant={token.change.startsWith('+') ? "sherryfluorLight" : "destructive"}>
                       {token.change}
-                    </Badge>
+                    </SherryBadge>
                   </div>
                 ))}
               </CardContent>

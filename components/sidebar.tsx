@@ -7,7 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Separator } from "@/components/ui/separator";
 import { ChevronDown, X } from "lucide-react";
-import { CustomAvatar } from "@/components/ui/custom-avatar";
+import { CustomAvatar } from "@/components/custom/custom-avatar";
 import { sidebarSections } from "./sidebar-config";
 
 interface SidebarProps {

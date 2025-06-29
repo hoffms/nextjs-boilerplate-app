@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CustomAvatar } from "@/components/ui/custom-avatar";
+import { CustomAvatar } from "@/components/custom/custom-avatar";
+import { SherryBadge } from "@/components/custom/sherry-badge";
 import { Separator } from "@/components/ui/separator";
 import { Menu, ChevronDown } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
-import { SherryLogo } from "@/components/sherry-logo";
+import { SherryLogo } from "@/components/custom/sherry-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 
@@ -52,9 +53,9 @@ export function LayoutContent({ children }: LayoutContentProps) {
                 />
                 <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
                   <div className="max-w-20 truncate">Personal</div>
-                  <Badge variant="sherrypurpleLight" className="ml-1.5 h-[16px] px-1.5 text-xs">
+                  <SherryBadge variant="sherrypurpleLight" className="ml-1.5 h-[16px] px-1.5 text-xs">
                     Beta
-                  </Badge>
+                  </SherryBadge>
                 </div>
                 <ChevronDown className="ml-1 text-gray-500" size={14} />
               </Button>
