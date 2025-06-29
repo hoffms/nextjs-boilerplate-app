@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Separator } from "@/components/ui/separator";
 import { ChevronDown, X } from "lucide-react";
+import { CustomAvatar } from "@/components/ui/custom-avatar";
 import { sidebarSections } from "./sidebar-config";
 
 interface SidebarProps {
@@ -198,7 +199,10 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
         <div className="flex-col items-stretch pl-2 gap-3 py-3 relative hidden w-full pb-2 pt-1 sm:flex">
           <section className="bg-card border border-border flex flex-col gap-1.5 rounded-lg p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-border/80 hover:shadow-md">
             <span className="flex items-center justify-between text-muted-foreground">
-              <h5 className="text-[13px] font-medium">New Feature</h5>
+              <div className="flex items-center gap-2">
+                <CustomAvatar value="Demo User" size="sm" />
+                <h5 className="text-[13px] font-medium">Custom Avatars</h5>
+              </div>
               <span className="sr-only">Learn more</span>
               <Button
                 variant="ghost"
@@ -208,7 +212,19 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
                 <X className="h-4 w-4" />
               </Button>
             </span>
-            <p className="text-sm">v0 will now sync across tabs and browsers while messages stream in</p>
+            <div className="flex-1">
+              <p className="text-sm">We built a custom avatar generator, why not? maybe it turns into an nft...</p>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-6 text-xs mt-1"
+              >
+                <Link href="/avatar-demo">
+                  Check it out
+                </Link>
+              </Button>
+            </div>
           </section>
         </div>
       </aside>

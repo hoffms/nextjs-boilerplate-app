@@ -7,7 +7,8 @@ import {
   FileText, 
   Users, 
   TrendingUp, 
-  Trophy
+  Trophy,
+  Palette
 } from "lucide-react";
 
 export interface SidebarNavItem {
@@ -58,6 +59,11 @@ export const sidebarSections: SidebarSection[] = [
         label: "Templates",
         href: "/templates",
         icon: () => <FileText size={16} />,
+      },
+      {
+        label: "Avatar Demo",
+        href: "/avatar-demo",
+        icon: () => <Palette size={16} />,
       },
     ],
   },

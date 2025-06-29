@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LayoutContent } from "@/components/layout-content";
@@ -18,7 +18,11 @@ export const metadata: Metadata = {
   description: "A beautiful modern platform with shadcn/ui, Tailwind CSS, and Radix UI components",
   keywords: ["Sherry", "Next.js", "React", "TypeScript", "shadcn/ui", "Tailwind CSS"],
   authors: [{ name: "Sherry Team" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

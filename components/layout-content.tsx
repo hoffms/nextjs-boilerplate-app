@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CustomAvatar } from "@/components/ui/custom-avatar";
 import { Separator } from "@/components/ui/separator";
 import { Menu, ChevronDown } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
@@ -45,16 +47,16 @@ export function LayoutContent({ children }: LayoutContentProps) {
             size="sm"
             className="h-8 px-2"
           >
-            <div className="relative shrink-0 select-none items-center justify-center overflow-hidden rounded-full mr-2 block w-5 h-5">
-              <div className="h-full w-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                U
-              </div>
-            </div>
+            <CustomAvatar 
+              value="Personal User" 
+              size="sm" 
+              className="mr-2"
+            />
             <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
               <div className="max-w-20 truncate">Personal</div>
-              <div className="pointer-events-none inline-flex shrink-0 items-center justify-center whitespace-nowrap border font-medium outline-none border-orange-200 text-orange-700 bg-orange-100 ml-1.5 h-[16px] rounded-full border-none px-1.5 text-xs">
+              <Badge variant="sherrypurpleLight" className="ml-1.5 h-[16px] px-1.5 text-xs">
                 Beta
-              </div>
+              </Badge>
             </div>
             <ChevronDown className="ml-1 text-gray-500" size={14} />
           </Button>
