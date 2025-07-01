@@ -3,4 +3,5 @@ export { VerificationBadge } from './verification-badge'
 export { SherryBadge } from './sherry-badge'
 export { SherryLogo } from './sherry-logo'
 export { AvatarPattern } from './avatar-pattern'
-export { Footer } from './footer' 
+export { Footer } from './footer'
+export * from "./template-card" 

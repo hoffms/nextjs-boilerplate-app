@@ -21,6 +21,7 @@ import React from "react";
 import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { sidebarSections } from "@/components/sidebar-config";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { usePathname } from "next/navigation";
 
 // Input sanitization utility
 const sanitizeText = (text: string): string => {
@@ -162,6 +163,8 @@ export function Header({
   config = guestHeaderConfig,
   className = "",
 }: HeaderProps) {
+  const pathname = usePathname();
+
   const renderNavItem = (item: HeaderNavItem) => {
     if (!item || !item.label) {
       console.warn('Invalid navigation item:', item);
@@ -311,9 +314,9 @@ export function Header({
                       <li key={j}>
                         <Button
                           asChild
-                          variant={item.label === 'New' ? 'secondary' : (item.href === location?.pathname ? 'default' : 'ghost')}
+                          variant={item.label === 'New' ? 'secondary' : (item.href === pathname ? 'default' : 'ghost')}
                           size="sm"
-                          className={`w-full justify-start ${(item.label === 'New') ? '' : (item.href === location?.pathname ? 'text-foreground' : 'text-muted-foreground')}`}
+                          className={`w-full justify-start ${(item.label === 'New') ? '' : (item.href === pathname ? 'text-foreground' : 'text-muted-foreground')}`}
                         >
                           <Link href={item.href || "#"}>
                             {item.icon && item.icon()}<span className="ml-2">{item.label}</span>

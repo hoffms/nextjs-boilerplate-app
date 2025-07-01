@@ -35,6 +35,7 @@ import {
 import { Section } from "@/components/section"
 import Link from "next/link"
 import { SherryLogo } from "@/components/custom/sherry-logo"
+import { TemplateCard } from "@/components/custom"
 
 export default function Home() {
   return (
@@ -75,73 +76,28 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
-            <Link href="/templates/dashboard" className="block">
-              <Card className="hover:border-primary hover:bg-muted/40 transition-all flex flex-col justify-between h-full cursor-pointer">
-                {/* Logo/Image Section */}
-                <AvatarPattern baseValue="Dashboard" size="sm" />
-                
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <CustomAvatar value="LFJ" size="sm" />
-                      <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
-                        <div className="max-w-20 truncate">LFJ</div>
-                      </div>
-                      <VerificationBadge status="verified" />
-                    </div>
-                  </div>
-                  <CardTitle>Dashboard Template</CardTitle>
-                  <CardDescription>Complete dashboard with charts, tables, and analytics.</CardDescription>
-                </CardHeader>
-                <div className="flex-1" />
-              </Card>
-            </Link>
-
-            <Link href="/templates/community" className="block">
-              <Card className="hover:border-primary hover:bg-muted/40 transition-all flex flex-col justify-between h-full cursor-pointer">
-                {/* Logo/Image Section */}
-                <AvatarPattern baseValue="Community" size="sm" />
-                
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <CustomAvatar value="Sherry" size="sm" />
-                      <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
-                        <div className="max-w-20 truncate">Sherry</div>
-                      </div>
-                      <VerificationBadge status="verified" />
-                    </div>
-                  </div>
-                  <CardTitle>Community Template</CardTitle>
-                  <CardDescription>Social platform with user profiles and interactions.</CardDescription>
-                </CardHeader>
-                <div className="flex-1" />
-              </Card>
-            </Link>
-
-            <Link href="/templates/analytics" className="block">
-              <Card className="hover:border-primary hover:bg-muted/50 transition-all flex flex-col justify-between h-full cursor-pointer">
-                {/* Logo/Image Section */}
-                <AvatarPattern baseValue="Analytics" size="sm" />
-                
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <CustomAvatar value="Wormhole" size="sm" />
-                      <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
-                        <div className="max-w-20 truncate">Wormhole</div>
-                      </div>
-                      <VerificationBadge status="verified" />
-                    </div>
-                  </div>
-                  <CardTitle>Analytics Template</CardTitle>
-                  <CardDescription>Data visualization and reporting dashboard.</CardDescription>
-                </CardHeader>
-                <div className="flex-1" />
-              </Card>
-            </Link>
+            <TemplateCard
+              href="/templates/example"
+              avatar="LFJ"
+              pattern="Dashboard"
+              title="Dashboard Template"
+              description="Complete dashboard with charts, tables, and analytics."
+            />
+            <TemplateCard
+              href="/templates/example"
+              avatar="Sherry"
+              pattern="Community"
+              title="Community Template"
+              description="Social platform with user profiles and interactions."
+            />
+            <TemplateCard
+              href="/templates/example"
+              avatar="Wormhole"
+              pattern="Analytics"
+              title="Analytics Template"
+              description="Data visualization and reporting dashboard."
+            />
           </div>
-
           {/* See More Templates Button */}
           <div className="text-center mt-8">
             <Button size="lg" className="px-8" asChild>
