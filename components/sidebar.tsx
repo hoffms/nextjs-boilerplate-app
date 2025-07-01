@@ -55,7 +55,7 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
                       {item.label === "New" ? (
                         <Button
                           asChild
-                          variant="outline"
+                          variant="secondary"
                           size="sm"
                           className="w-full h-8 justify-start px-2"
                         >

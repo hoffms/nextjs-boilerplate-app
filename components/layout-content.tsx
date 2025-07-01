@@ -136,7 +136,7 @@ export function LayoutContent({ children, authProps }: LayoutContentProps) {
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="absolute top-3 left-3 z-10 h-8 w-8 p-0 transition-transform duration-300 hover:scale-105 bg-background/80 backdrop-blur-sm border"
+              className="absolute top-3 left-3 z-10 h-8 w-8 p-0 transition-transform duration-300 hover:scale-105 bg-background/80 backdrop-blur-sm border hidden sm:block"
             >
               <Menu size={16} className={`transition-transform duration-300 ${sidebarOpen ? 'rotate-180' : ''}`} />
             </Button>

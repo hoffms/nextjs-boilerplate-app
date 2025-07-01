@@ -138,8 +138,8 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: var(--sherryfluor-400);
-  --sidebar-primary-foreground: oklch(0.1 0.25 140);
+  --sidebar-primary: var(--sherryfluor-500);
+  --sidebar-primary-foreground: var(--sherryfluor-950);
   --sidebar-accent: var(--sherryfluor-200);
   --sidebar-accent-foreground: var(--sherryfluor-950);
   --sidebar-border: oklch(0.9 0.003 0);
@@ -198,10 +198,10 @@
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: var(--sherryfluor-500);
-  --sidebar-primary-foreground: oklch(0.1 0.25 140);
+  --sidebar-primary: var(--sherryfluor-600);
+  --sidebar-primary-foreground: var(--sherryfluor-950);
   --sidebar-accent: var(--sherryfluor-600);
-  --sidebar-accent-foreground: var(--sherryfluor-900);
+  --sidebar-accent-foreground: var(--sherryfluor-950);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: var(--sherryfluor-500);
   

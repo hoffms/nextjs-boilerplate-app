@@ -18,6 +18,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import React from "react";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetClose } from "@/components/ui/sheet";
+import { sidebarSections } from "@/components/sidebar-config";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 // Input sanitization utility
 const sanitizeText = (text: string): string => {
@@ -213,10 +216,203 @@ export function Header({
   const sanitizedUserEmail = user?.email ? sanitizeText(user.email) : '';
   const sanitizedWorkspace = currentWorkspace ? sanitizeText(currentWorkspace) : 'Personal';
 
-  // Guest Header - Clean and focused on conversion
-  if (!isAuthenticated) {
-    return (
-      <header className={`flex h-14 shrink-0 items-center justify-between gap-3 px-3 py-2 sm:h-11 sm:px-2 ${className}`}>
+  // --- MOBILE HEADER ---
+  // Only show on small screens
+  // (Tailwind: block on sm and below, hidden on md+)
+  // Desktop header: hidden on sm and below, block on md+
+  return (
+    <>
+      {/* Mobile Header */}
+      <div className="flex h-14 items-center justify-between px-2 sm:hidden w-full">
+        {/* Hamburger menu (SheetTrigger) */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="mr-1">
+              <span className="sr-only">Open menu</span>
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0 w-full h-full max-w-full">
+            <SheetTitle className="sr-only">Main navigation</SheetTitle>
+            {/* Drawer header row with close button */}
+            <div className="flex items-center justify-between px-4 pt-4 pb-2 border-b">
+              <SherryLogo width={22} height={20} />
+              <SheetClose className="ml-auto">
+                <span className="sr-only">Close</span>
+              </SheetClose>
+            </div>
+            {/* Workspace selector (expandable/collapsible) */}
+            {config.showWorkspaceSelector && (
+              <Collapsible>
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" className="w-full flex flex-row items-center justify-between gap-3 px-4 py-3 border-b border-border rounded-none text-left">
+                    <div className="flex flex-row items-center gap-3 min-w-0">
+                      <CustomAvatar value={sanitizedUserName || "Personal User"} size="sm" />
+                      <div className="flex flex-col min-w-0">
+                        <span className="truncate font-medium text-sm text-foreground">{sanitizedWorkspace}</span>
+                        <span className="text-xs text-muted-foreground">Beta mode • 1 workspace</span>
+                      </div>
+                    </div>
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200 text-muted-foreground flex-shrink-0" />
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="pl-8 pr-4 py-2">
+                    <div className="text-xs text-muted-foreground mb-2">Current Workspace</div>
+                    <div className="text-sm text-foreground mb-1">{sanitizedWorkspace}</div>
+                    <div className="text-xs text-muted-foreground mb-2">Beta mode • 1 workspace limit</div>
+                    <div className="text-xs text-muted-foreground mb-2 font-semibold">My Workspaces</div>
+                    {workspaces && workspaces.length > 0 && (
+                      <div className="mb-2">
+                        {workspaces.map((workspace) => (
+                          <Button
+                            key={workspace.id}
+                            variant={workspace.id === currentWorkspace ? "default" : "ghost"}
+                            size="sm"
+                            className={`w-full mb-1 justify-start ${workspace.id === currentWorkspace ? 'text-foreground' : 'text-muted-foreground'}`}
+                            onClick={() => onWorkspaceChange?.(workspace.id)}
+                          >
+                            <div className="flex-1 text-left">
+                              <div className="text-sm font-medium">{workspace.name}</div>
+                              <div className="text-xs text-muted-foreground capitalize">{workspace.type}</div>
+                            </div>
+                            {workspace.id === currentWorkspace && (
+                              <div className="w-2 h-2 bg-primary rounded-full ml-2" />
+                            )}
+                          </Button>
+                        ))}
+                      </div>
+                    )}
+                    <Button disabled variant="outline" size="sm" className="w-full justify-start mb-2">
+                      <div className="w-4 h-4 rounded border-2 border-dashed border-muted-foreground flex items-center justify-center mr-2">
+                        <span className="text-xs">+</span>
+                      </div>
+                      Create Workspace
+                      <span className="ml-auto text-xs bg-muted px-1.5 py-0.5 rounded">Soon</span>
+                    </Button>
+                    <div className="px-2 py-2 bg-muted/50 rounded-sm mt-2">
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">Beta Mode:</span> You have access to 1 workspace during the beta period.
+                      </div>
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            )}
+            {/* Sidebar nav (sidebarSections) */}
+            <nav className="px-4 py-2 border-b border-border">
+              {sidebarSections.map((section, i) => (
+                <div key={i} className="mb-4">
+                  {section.title && (
+                    <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">{section.title}</div>
+                  )}
+                  <ul className="flex flex-col gap-1">
+                    {section.items.map((item, j) => (
+                      <li key={j}>
+                        <Button
+                          asChild
+                          variant={item.label === 'New' ? 'secondary' : (item.href === location?.pathname ? 'default' : 'ghost')}
+                          size="sm"
+                          className={`w-full justify-start ${(item.label === 'New') ? '' : (item.href === location?.pathname ? 'text-foreground' : 'text-muted-foreground')}`}
+                        >
+                          <Link href={item.href || "#"}>
+                            {item.icon && item.icon()}<span className="ml-2">{item.label}</span>
+                          </Link>
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+        {/* Center: Logo and context */}
+        <div className="flex-1 flex justify-center items-center min-w-0">
+          <a href="/" className="flex items-center gap-2" aria-label="Go to homepage">
+            <SherryLogo width={22} height={20} />
+          </a>
+          {/* Optionally, add context (workspace/page) here */}
+        </div>
+        {/* Right: Home button and user avatar or connect button */}
+        <div className="flex items-center gap-1">
+          <Button asChild variant="ghost" size="icon" className="mr-1">
+            <Link href="/">
+              <Home size={20} />
+              <span className="sr-only">Home</span>
+            </Link>
+          </Button>
+          {isAuthenticated ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <CustomAvatar value={sanitizedUserName || "User"} size="sm" />
+                  <span className="sr-only">Open user menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56" sideOffset={8}>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{sanitizedUserName}</p>
+                    <p className="text-xs leading-none text-muted-foreground">{sanitizedUserEmail}</p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard" className="flex items-center gap-2">
+                      <User size={16} />
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile" className="flex items-center gap-2">
+                      <User size={16} />
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/settings" className="flex items-center gap-2">
+                      <Settings size={16} />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem asChild>
+                    <Link href="/help" className="flex items-center gap-2">
+                      <HelpCircle size={16} />
+                      Help & Support
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem 
+                  onClick={onSignOut}
+                  className="flex items-center gap-2 text-destructive focus:text-destructive"
+                >
+                  <LogOut size={16} />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="h-7 px-4 text-sm font-semibold"
+              onClick={onSignIn}
+              aria-label="Sign in to your account"
+            >
+              Connect
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {/* Desktop Header (unchanged) */}
+      <header className="hidden sm:flex h-14 shrink-0 items-center justify-between gap-0 px-3 py-2 sm:h-11 sm:px-2 w-full ${className}">
         {/* Left Section - Logo */}
         <div className="flex min-w-0 flex-1 items-center">
           {config.showLogo && (
@@ -247,249 +443,20 @@ export function Header({
             
             {/* Auth buttons */}
             {config.showAuthButtons && (
-              <>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-7 px-3 text-sm"
-                  onClick={onSignIn}
-                  aria-label="Sign in to your account"
-                >
-                  Connect to X
-                </Button>
-              </>
+              <Button 
+                variant="default" 
+                size="sm" 
+                className="h-7 px-4 text-sm font-semibold"
+                onClick={onSignIn}
+                aria-label="Sign in to your account"
+              >
+                Connect
+              </Button>
             )}
           </div>
         </div>
       </header>
-    );
-  }
-
-  // Logged Header - Full functionality with user menu
-  return (
-    <header className={`flex h-14 shrink-0 items-center justify-between gap-0 px-3 py-2 sm:h-11 sm:px-2 ${className}`}>
-      {/* Left Section - Logo and Workspace */}
-      <div className="flex min-w-0 flex-1 items-center">
-        {config.showLogo && (
-          <>
-            <a href="/" className="mr-3" aria-label="Go to homepage">
-              <SherryLogo width={20} height={20} />
-            </a>
-            <Separator orientation="vertical" className="h-6 mr-3" />
-          </>
-        )}
-
-        {/* Forward slash separator */}
-        <span className="text-muted-foreground mx-1">/</span>
-
-        {/* Left navigation items */}
-        {config.leftItems && config.leftItems.length > 0 && (
-          <div className="flex items-center gap-1 ml-2">
-            {config.leftItems.map(renderNavItem)}
-          </div>
-        )}
-
-        {/* Workspace/User Profile Section */}
-        {config.showWorkspaceSelector && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 px-2"
-                aria-label="Open workspace menu"
-              >
-                <CustomAvatar 
-                  value={sanitizedUserName || "Personal User"} 
-                  size="sm" 
-                  className="mr-2"
-                />
-                <div className="flex min-w-0 flex-1 items-center truncate text-start text-sm font-medium">
-                  <div className="max-w-20 truncate">
-                    {sanitizedWorkspace}
-                  </div>
-                  <SherryBadge variant="sherrypurpleLight" className="ml-1.5 h-[16px] px-1.5 text-xs">
-                    Beta
-                  </SherryBadge>
-                </div>
-                <ChevronDown className="ml-1 text-gray-500" size={14} />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="w-[280px]" sideOffset={12}>
-              <DropdownMenuLabel>
-                Current Workspace
-              </DropdownMenuLabel>
-              
-              {/* Current Workspace */}
-              <div className="px-3 py-2">
-                <div className="text-sm text-muted-foreground mt-1">{sanitizedWorkspace}</div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  Beta mode • 1 workspace limit
-                </div>
-              </div>
-              
-              <DropdownMenuSeparator />
-              
-              {/* Workspace List */}
-              {workspaces && workspaces.length > 0 && (
-                <>
-                  <DropdownMenuLabel className="text-xs text-muted-foreground px-3 py-1">
-                    My Workspaces
-                  </DropdownMenuLabel>
-                  <DropdownMenuGroup>
-                    {workspaces.map((workspace) => (
-                      <div key={workspace.id}>
-                        <DropdownMenuItem
-                          onClick={() => onWorkspaceChange?.(workspace.id)}
-                          className="flex items-center gap-2 px-3 py-2"
-                        >
-                          <div className="flex-1">
-                            <div className="text-sm font-medium">{workspace.name}</div>
-                            <div className="text-xs text-muted-foreground capitalize">{workspace.type}</div>
-                          </div>
-                          {workspace.id === currentWorkspace && (
-                            <div className="w-2 h-2 bg-primary rounded-full" />
-                          )}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          disabled
-                          className="flex items-center gap-2 text-muted-foreground cursor-not-allowed"
-                        >
-                          <div className="w-4 h-4 rounded border-2 border-dashed border-muted-foreground flex items-center justify-center">
-                            <span className="text-xs">+</span>
-                          </div>
-                          <span>Create Workspace</span>
-                          <span className="ml-auto text-xs bg-muted px-1.5 py-0.5 rounded">
-                            Soon
-                          </span>
-                        </DropdownMenuItem>
-                      </div>
-                    ))}
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                </>
-              )}
-              
-              {/* Beta Mode Notice */}
-              <div className="px-3 py-2 bg-muted/50 rounded-sm mx-2">
-                <div className="text-xs text-muted-foreground">
-                  <span className="font-medium">Beta Mode:</span> You have access to 1 workspace during the beta period.
-                </div>
-              </div>
-              
-              <DropdownMenuSeparator />
-              
-
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
-      </div>
-      
-      {/* Center Section - Search and other center items */}
-      {config.centerItems && config.centerItems.length > 0 && (
-        <div className="flex items-center gap-2">
-          {config.centerItems.map(renderNavItem)}
-        </div>
-      )}
-      
-      {/* Right Section - Notifications, Theme Toggle, and User Menu */}
-      <div className="flex justify-end p-2">
-        <div className="flex gap-2 items-center">
-          {/* Notifications */}
-          {config.showNotifications && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 w-8 p-0 relative"
-              onClick={onNotificationsClick}
-              aria-label="View notifications"
-            >
-              <Bell size={16} />
-              <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500 text-xs text-white flex items-center justify-center">
-                {notificationCount}
-              </span>
-            </Button>
-          )}
-          
-          {/* Right navigation items */}
-          {config.rightItems && config.rightItems.length > 0 && (
-            <>
-              {config.rightItems.map(renderNavItem)}
-            </>
-          )}
-          
-          {config.showThemeToggle && <ThemeToggle />}
-          
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 w-8 p-0 rounded-full"
-                aria-label="Open user menu"
-              >
-                <CustomAvatar 
-                  value={sanitizedUserName || "User"} 
-                  size="sm" 
-                />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56" sideOffset={8}>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{sanitizedUserName}</p>
-                  <p className="text-xs leading-none text-muted-foreground">{sanitizedUserEmail}</p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard" className="flex items-center gap-2">
-                    <User size={16} />
-                    Dashboard
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/profile" className="flex items-center gap-2">
-                    <User size={16} />
-                    Profile
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/settings" className="flex items-center gap-2">
-                    <Settings size={16} />
-                    Settings
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              
-              <DropdownMenuSeparator />
-              
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
-                  <Link href="/help" className="flex items-center gap-2">
-                    <HelpCircle size={16} />
-                    Help & Support
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              
-              <DropdownMenuSeparator />
-              
-              <DropdownMenuItem 
-                onClick={onSignOut}
-                className="flex items-center gap-2 text-destructive focus:text-destructive"
-              >
-                <LogOut size={16} />
-                Sign Out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-    </header>
+    </>
   );
 }
 

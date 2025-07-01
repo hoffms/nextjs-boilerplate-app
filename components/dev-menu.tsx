@@ -177,6 +177,23 @@ export function DevMenu({ onAuthStateChange, currentAuthState }: DevMenuProps) {
             </div>
           </div>
         </CardContent>
+        {/* Internal Tools Section */}
+        <Separator />
+        <div className="px-4 py-2">
+          <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">
+            Internal Tools
+          </Label>
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="w-full h-8 justify-start px-2"
+          >
+            <a href="/components" target="_blank" rel="noopener noreferrer">
+              Components Page
+            </a>
+          </Button>
+        </div>
       </Card>
     </div>
   );
