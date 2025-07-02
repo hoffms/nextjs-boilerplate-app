@@ -26,7 +26,17 @@ import {
   EyeOff
 } from "lucide-react"
 import { SherryLogo } from "@/components/custom/sherry-logo"
-import { Header, guestHeaderConfig, loggedHeaderConfig } from "@/components/header"
+import { 
+  Header, 
+  guestHeaderConfig, 
+  loggedHeaderConfig, 
+  compactHeaderConfig,
+  mobileOnlyHeaderConfig,
+  desktopOnlyHeaderConfig,
+  minimalHeaderConfig,
+  workspaceOnlyHeaderConfig,
+  avatarOnlyHeaderConfig
+} from "@/components/header"
 import { Footer } from "@/components/custom/footer"
 import { Section } from "@/components/section"
 
@@ -98,20 +108,106 @@ export default function ComponentsPage() {
             {/* Header Demo */}
             <Card>
               <CardHeader>
-                <CardTitle>Header</CardTitle>
-                <CardDescription>The main app/site header. Guest and logged-in variants shown below.</CardDescription>
+                <CardTitle>Header Configurations</CardTitle>
+                <CardDescription>All header configuration variations showing different size-based visibility options.</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-8">
+                {/* Standard Configurations */}
                 <div>
-                  <div className="mb-2 font-semibold text-sm">Guest Header</div>
-                  <div className="border rounded-lg overflow-hidden">
-                    <Header config={guestHeaderConfig} />
+                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Standard Configurations</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Guest Header (No workspace/avatar)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={guestHeaderConfig} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Logged-in Header (Full workspace/avatar on all sizes)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={loggedHeaderConfig} isAuthenticated user={{ name: "Jane Doe", email: "jane@example.com" }} currentWorkspace="Jane's Workspace" workspaces={[{ id: "1", name: "Jane's Workspace", type: "personal" }]} notificationCount={2} />
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Size-Based Variations */}
                 <div>
-                  <div className="mb-2 font-semibold text-sm">Logged-in Header</div>
-                  <div className="border rounded-lg overflow-hidden">
-                    <Header config={loggedHeaderConfig} isAuthenticated user={{ name: "Jane Doe", email: "jane@example.com" }} currentWorkspace="Jane's Workspace" workspaces={[{ id: "1", name: "Jane's Workspace", type: "personal" }]} notificationCount={2} />
+                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Size-Based Variations</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Compact Header (Mobile + Desktop, no Tablet)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={compactHeaderConfig} isAuthenticated user={{ name: "John Doe", email: "john@example.com" }} currentWorkspace="John's Workspace" workspaces={[{ id: "1", name: "John's Workspace", type: "personal" }]} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Mobile-Only Header (Workspace/avatar only in mobile drawer)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={mobileOnlyHeaderConfig} isAuthenticated user={{ name: "Alice Smith", email: "alice@example.com" }} currentWorkspace="Alice's Workspace" workspaces={[{ id: "1", name: "Alice's Workspace", type: "personal" }]} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Desktop-Only Header (Workspace/avatar only on desktop)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={desktopOnlyHeaderConfig} isAuthenticated user={{ name: "Bob Wilson", email: "bob@example.com" }} currentWorkspace="Bob's Workspace" workspaces={[{ id: "1", name: "Bob's Workspace", type: "personal" }]} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Component Variations */}
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Component Variations</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Minimal Header (Logo + theme toggle only)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={minimalHeaderConfig} isAuthenticated user={{ name: "Minimal User", email: "minimal@example.com" }} currentWorkspace="Minimal Workspace" workspaces={[{ id: "1", name: "Minimal Workspace", type: "personal" }]} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Workspace-Only Header (No avatar)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={workspaceOnlyHeaderConfig} isAuthenticated user={{ name: "Workspace User", email: "workspace@example.com" }} currentWorkspace="Workspace Only" workspaces={[{ id: "1", name: "Workspace Only", type: "personal" }]} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-2 font-semibold text-sm">Avatar-Only Header (No workspace selector)</div>
+                      <div className="border rounded-lg overflow-hidden">
+                        <Header config={avatarOnlyHeaderConfig} isAuthenticated user={{ name: "Avatar User", email: "avatar@example.com" }} currentWorkspace="Avatar Workspace" workspaces={[{ id: "1", name: "Avatar Workspace", type: "personal" }]} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Configuration Reference */}
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Configuration Reference</h4>
+                  <div className="bg-muted/50 p-4 rounded-lg text-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <h5 className="font-semibold mb-2">Size Breakpoints:</h5>
+                        <ul className="space-y-1 text-muted-foreground">
+                          <li>• <strong>Mobile:</strong> sm and below (mobile drawer)</li>
+                          <li>• <strong>Tablet:</strong> md to lg (center section)</li>
+                          <li>• <strong>Desktop:</strong> xl and above (right section)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h5 className="font-semibold mb-2">Configuration Structure:</h5>
+                        <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
+{`workspaceSelector: {
+  show: boolean,
+  sizes: {
+    mobile: boolean,
+    tablet: boolean,
+    desktop: boolean
+  }
+}`}
+                        </pre>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>

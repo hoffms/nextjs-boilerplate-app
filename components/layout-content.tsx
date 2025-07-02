@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
-import { Header, guestHeaderConfig, loggedHeaderConfig } from "./header";
+import { HeaderSimple } from "./header-simple";
 import { DevMenu } from "@/components/dev-menu";
 import { ErrorBoundary } from "./error-boundary";
+import { Sidebar as SidebarIcon } from "lucide-react";
 
 interface LayoutContentProps {
   children: React.ReactNode;
@@ -27,6 +28,18 @@ interface LayoutContentProps {
     onWorkspaceChange?: (workspaceId: string) => void;
     onNotificationsClick?: () => void;
   };
+}
+
+// Utility hook to detect mobile device
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+  return isMobile;
 }
 
 export function LayoutContent({ children, authProps }: LayoutContentProps) {
@@ -95,8 +108,7 @@ export function LayoutContent({ children, authProps }: LayoutContentProps) {
     }
   };
 
-  // Simple header configuration based on auth state
-  const headerConfig = finalAuthProps.isAuthenticated ? loggedHeaderConfig : guestHeaderConfig;
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setIsInitialized(true);
@@ -109,11 +121,22 @@ export function LayoutContent({ children, authProps }: LayoutContentProps) {
 
   return (
     <div className="h-screen bg-background sm:bg-muted flex w-full flex-col overflow-hidden">
-      {/* Header */}
+      {/* Header - Simple and clean! */}
       <ErrorBoundary>
-        <Header 
-          config={headerConfig}
-          {...finalAuthProps}
+        <HeaderSimple 
+          showLogo={true}
+          showAuthButtons={!finalAuthProps.isAuthenticated}
+          showUserMenu={finalAuthProps.isAuthenticated}
+          showThemeToggle={true}
+          user={finalAuthProps.user}
+          currentWorkspace={finalAuthProps.currentWorkspace}
+          workspaces={finalAuthProps.workspaces}
+          onSignIn={finalAuthProps.onSignIn}
+          onSignOut={finalAuthProps.onSignOut}
+          onWorkspaceChange={finalAuthProps.onWorkspaceChange}
+          onCreateWorkspace={() => console.log('Create workspace clicked')}
+          onWorkspaceSettings={() => console.log('Workspace settings clicked')}
+          isMobile={isMobile}
         />
       </ErrorBoundary>
 
@@ -129,18 +152,19 @@ export function LayoutContent({ children, authProps }: LayoutContentProps) {
           />
         )}
         
-        <div className="flex-1 h-full overflow-hidden p-2 pt-0 transition-all duration-300 ease-in-out">
-          <main className="flex-1 bg-background overflow-auto h-full rounded-lg border transition-opacity duration-300 ease-in-out relative">
-            {/* Sidebar toggle button positioned at top left of content */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="absolute top-3 left-3 z-10 h-8 w-8 p-0 transition-transform duration-300 hover:scale-105 bg-background/80 backdrop-blur-sm border hidden sm:block"
-            >
-              <Menu size={16} className={`transition-transform duration-300 ${sidebarOpen ? 'rotate-180' : ''}`} />
-            </Button>
-            
+        <div className="flex-1 h-full overflow-hidden p-2 pt-0 transition-all duration-300 ease-in-out relative">
+          {/* Sidebar toggle button positioned at top left of content */}
+          <Button
+            variant="secondary"
+            size="icon"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="h-9 w-9 shadow-lg border absolute top-2 left-4 z-10 hidden sm:block"
+            title="Open sidebar"
+          >
+            <SidebarIcon size={16} />
+          </Button>
+          
+          <main className="flex-1 bg-background overflow-auto h-full rounded-lg border transition-opacity duration-300 ease-in-out">
             {/* Content with top padding to account for the button */}
             <div className="pt-12">
               {children}
