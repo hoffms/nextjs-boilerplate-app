@@ -26,7 +26,7 @@ export const sidebarSections: SidebarSection[] = [
   {
     items: [
       {
-        label: "New",
+        label: "New Mini dApp",
         href: "/",
         icon: () => <Plus size={16} />,
       },
@@ -50,7 +50,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Discover",
     items: [
       {
-        label: "Community Mini dApps",
+        label: "Marketplace",
         href: "/community",
         icon: () => <Users size={16} />,
       },
@@ -65,7 +65,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Podium",
     items: [
       {
-        label: "Market Leaderboard",
+        label: "Market Leaderboards",
         href: "/market-leaderboards",
         icon: () => <TrendingUp size={16} />,
       },
