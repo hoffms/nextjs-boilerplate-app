@@ -37,7 +37,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  
+
   /* Custom Sherry Purple Palette */
   --color-sherrypurple-50: var(--sherrypurple-50);
   --color-sherrypurple-100: var(--sherrypurple-100);
@@ -50,7 +50,7 @@
   --color-sherrypurple-800: var(--sherrypurple-800);
   --color-sherrypurple-900: var(--sherrypurple-900);
   --color-sherrypurple-950: var(--sherrypurple-950);
-  
+
   /* Custom Sherry Fluor (Lime) Palette */
   --color-sherryfluor-50: var(--sherryfluor-50);
   --color-sherryfluor-100: var(--sherryfluor-100);
@@ -63,7 +63,7 @@
   --color-sherryfluor-800: var(--sherryfluor-800);
   --color-sherryfluor-900: var(--sherryfluor-900);
   --color-sherryfluor-950: var(--sherryfluor-950);
-  
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -76,12 +76,12 @@
     min-height: 100vh;
     min-height: 100dvh;
   }
-  
+
   .max-h-screen-patched {
     max-height: 100vh;
     max-height: 100dvh;
   }
-  
+
   .h-screen-patched {
     height: 100vh;
     height: 100dvh;
@@ -113,37 +113,37 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: var(--sherryfluor-400);
-  --primary-foreground: oklch(0.1 0.25 140);
-  --secondary: oklch(0.96 0.002 0);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.96 0.002 0);
-  --muted-foreground: oklch(0.45 0.01 0);
-  --accent: oklch(0.96 0.002 0);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  --background: var(--zinc-50);
+  --foreground: var(--zinc-950);
+  --card: var(--zinc-100);
+  --card-foreground: var(--zinc-950);
+  --popover: var(--zinc-100);
+  --popover-foreground: var(--zinc-950);
+  --primary: var(--sherrypurple-600);
+  --primary-foreground: var(--sherrypurple-50);
+  --secondary: var(--zinc-200);
+  --secondary-foreground: var(--zinc-950);
+  --muted: var(--zinc-100);
+  --muted-foreground: var(--zinc-700);
+  --accent: var(--zinc-300);
+  --accent-foreground: var(--zinc-950);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.003 0);
-  --input: oklch(0.9 0.003 0);
-  --ring: var(--sherryfluor-400);
+  --border: var(--zinc-200);
+  --input: var(--zinc-100);
+  --ring: var(--zinc-400);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: var(--sherryfluor-400);
-  --sidebar-primary-foreground: oklch(0.1 0.25 140);
-  --sidebar-accent: var(--sherryfluor-200);
-  --sidebar-accent-foreground: var(--sherryfluor-950);
-  --sidebar-border: oklch(0.9 0.003 0);
-  --sidebar-ring: var(--sherryfluor-400);
+  --sidebar: var(--zinc-100);
+  --sidebar-foreground: var(--zinc-900);
+  --sidebar-primary: var(--zinc-900);
+  --sidebar-primary-foreground: var(--zinc-100);
+  --sidebar-accent: var(--zinc-200);
+  --sidebar-accent-foreground: var(--zinc-900);
+  --sidebar-border: var(--zinc-200);
+  --sidebar-ring: var(--zinc-400);
   
   /* Custom Sherry Purple Palette */
   --sherrypurple-50: #F1F0FA;
@@ -170,40 +170,53 @@
   --sherryfluor-800: #64740C;
   --sherryfluor-900: #303706;
   --sherryfluor-950: #181C03;
+
+  /* Zinc Palette */
+  --zinc-50: oklch(0.99 0.00 0);
+  --zinc-100: oklch(0.97 0.00 286);
+  --zinc-200: oklch(0.92 0.00 286);
+  --zinc-300: oklch(0.87 0.01 286);
+  --zinc-400: oklch(0.71 0.01 286);
+  --zinc-500: oklch(0.55 0.01 286);
+  --zinc-600: oklch(0.44 0.01 286);
+  --zinc-700: oklch(0.37 0.01 286);
+  --zinc-800: oklch(0.27 0.01 286);
+  --zinc-900: oklch(0.21 0.01 286);
+  --zinc-950: oklch(0.14 0.00 286);
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: var(--sherryfluor-500);
-  --primary-foreground: oklch(0.1 0.25 140);
-  --secondary: oklch(0.25 0.003 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.25 0.003 0);
-  --muted-foreground: oklch(0.65 0.008 0);
-  --accent: oklch(0.25 0.003 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: var(--zinc-950);
+  --foreground: var(--zinc-50);
+  --card: var(--zinc-900);
+  --card-foreground: var(--zinc-50);
+  --popover: var(--zinc-900);
+  --popover-foreground: var(--zinc-50);
+  --primary: var(--sherryfluor-600);
+  --primary-foreground: var(--sherryfluor-950);
+  --secondary: var(--zinc-800);
+  --secondary-foreground: var(--zinc-50);
+  --muted: var(--zinc-900);
+  --muted-foreground: var(--zinc-300);
+  --accent: var(--zinc-700);
+  --accent-foreground: var(--zinc-50);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: var(--sherryfluor-500);
+  --border: var(--zinc-800);
+  --input: var(--zinc-900);
+  --ring: var(--zinc-600);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: var(--sherryfluor-500);
-  --sidebar-primary-foreground: oklch(0.1 0.25 140);
-  --sidebar-accent: var(--sherryfluor-600);
-  --sidebar-accent-foreground: var(--sherryfluor-900);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: var(--sherryfluor-500);
+  --sidebar: var(--zinc-900);
+  --sidebar-foreground: var(--zinc-100);
+  --sidebar-primary: var(--zinc-100);
+  --sidebar-primary-foreground: var(--zinc-900);
+  --sidebar-accent: var(--zinc-800);
+  --sidebar-accent-foreground: var(--zinc-100);
+  --sidebar-border: var(--zinc-800);
+  --sidebar-ring: var(--zinc-600);
   
   /* Custom Sherry Purple Palette - Dark Mode (same values for consistency) */
   --sherrypurple-50: #F1F0FA;
@@ -230,6 +243,19 @@
   --sherryfluor-800: #64740C;
   --sherryfluor-900: #303706;
   --sherryfluor-950: #181C03;
+
+  /* Zinc Palette */
+  --zinc-50: oklch(0.99 0.00 0);
+  --zinc-100: oklch(0.97 0.00 286);
+  --zinc-200: oklch(0.92 0.00 286);
+  --zinc-300: oklch(0.87 0.01 286);
+  --zinc-400: oklch(0.71 0.01 286);
+  --zinc-500: oklch(0.55 0.01 286);
+  --zinc-600: oklch(0.44 0.01 286);
+  --zinc-700: oklch(0.37 0.01 286);
+  --zinc-800: oklch(0.27 0.01 286);
+  --zinc-900: oklch(0.21 0.01 286);
+  --zinc-950: oklch(0.14 0.00 286);
 }
 
 @layer base {
@@ -240,3 +266,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/*
+  Zinc color palette (OKLCH reference)
+  50:  oklch(0.99 0.00 0)
+  100: oklch(0.97 0.00 286)
+  200: oklch(0.92 0.00 286)
+  300: oklch(0.87 0.01 286)
+  400: oklch(0.71 0.01 286)
+  500: oklch(0.55 0.01 286)
+  600: oklch(0.44 0.01 286)
+  700: oklch(0.37 0.01 286)
+  800: oklch(0.27 0.01 286)
+  900: oklch(0.21 0.01 286)
+  950: oklch(0.14 0.00 286)
+*/
