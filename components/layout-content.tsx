@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
-import { HeaderSimple } from "./header-simple";
+import { Header } from "./header";
 import { DevMenu } from "@/components/dev-menu";
 import { ErrorBoundary } from "./error-boundary";
 import { Sidebar as SidebarIcon } from "lucide-react";
@@ -123,7 +123,7 @@ export function LayoutContent({ children, authProps }: LayoutContentProps) {
     <div className="h-screen bg-background sm:bg-muted flex w-full flex-col overflow-hidden">
       {/* Header - Simple and clean! */}
       <ErrorBoundary>
-        <HeaderSimple 
+        <Header 
           showLogo={true}
           showAuthButtons={!finalAuthProps.isAuthenticated}
           showUserMenu={finalAuthProps.isAuthenticated}

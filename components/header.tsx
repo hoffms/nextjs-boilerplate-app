@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import UserAvatarMenu from "@/components/custom/user-avatar-menu";
 import { WorkspaceSelector } from "./workspace-selector";
 
-interface HeaderSimpleProps {
+interface HeaderProps {
   // Simple boolean props - much easier to understand
   showLogo?: boolean;
   showAuthButtons?: boolean;
@@ -44,7 +44,7 @@ interface HeaderSimpleProps {
   className?: string;
 }
 
-export function HeaderSimple({
+export function Header({
   showLogo = true,
   showAuthButtons = true,
   showUserMenu = false,
@@ -60,7 +60,7 @@ export function HeaderSimple({
   onWorkspaceSettings,
   isMobile = false,
   className = "",
-}: HeaderSimpleProps) {
+}: HeaderProps) {
   const pathname = usePathname();
 
   // Simple mobile header
