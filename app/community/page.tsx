@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CustomAvatar } from "@/components/custom/custom-avatar"
-import { VerificationBadge } from "@/components/custom/verification-badge"
+import { CustomAvatar } from "@/components/shared/custom-avatar"
+import { VerificationBadge } from "@/components/shared/verification-badge"
 import { Download, Star, Github, Globe, Users, Zap, Code, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 

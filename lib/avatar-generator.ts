@@ -6,7 +6,7 @@ import {
   Shape1, Shape2, Shape3, Shape4, Shape5, Shape6, Shape7, Shape8, Shape9, Shape10,
   Shape11, Shape12, Shape13, Shape14, Shape15, Shape16, Shape17, Shape18, Shape19, Shape20,
   Shape21, Shape22, Shape23, Shape24, Shape25, Shape26, Shape27, Shape28, Shape29, Shape30
-} from '@/components/custom/shapes'
+} from '@/components/shared/shapes'
 
 export interface AvatarConfig {
   value: string

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CustomAvatar } from "@/components/custom/custom-avatar";
+import { CustomAvatar } from "@/components/shared/custom-avatar";
 import { ChevronDown, Plus, Settings, Search, Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { 

@@ -1,4 +1,4 @@
-import { CustomAvatar } from "@/components/custom/custom-avatar";
+import { CustomAvatar } from "@/components/shared/custom-avatar";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuGroup } from "@/components/ui/dropdown-menu";
 import { User, Settings, LogOut, HelpCircle } from "lucide-react";
 import Link from "next/link";

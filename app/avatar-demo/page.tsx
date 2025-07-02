@@ -3,12 +3,12 @@
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CustomAvatar } from "@/components/custom/custom-avatar"
+import { CustomAvatar } from "@/components/shared/custom-avatar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Dice1 } from "lucide-react"
-import * as Shapes from "@/components/custom/shapes"
+import * as Shapes from "@/components/shared/shapes"
 
 export default function AvatarDemoPage() {
   const [avatarInput, setAvatarInput] = useState("John Doe")

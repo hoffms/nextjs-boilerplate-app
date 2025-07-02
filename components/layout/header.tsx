@@ -1,17 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CustomAvatar } from "@/components/custom/custom-avatar";
-import { SherryLogo } from "@/components/custom/sherry-logo";
+import { CustomAvatar } from "@/components/shared/custom-avatar";
+import { SherryLogo } from "@/components/shared/sherry-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Home, Menu } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Sheet, SheetTrigger, SheetContent, SheetClose } from "@/components/ui/sheet";
-import { sidebarSections } from "@/components/sidebar-config";
+import { sidebarSections } from "@/components/layout/sidebar-config";
 import { usePathname } from "next/navigation";
-import UserAvatarMenu from "@/components/custom/user-avatar-menu";
-import { WorkspaceSelector } from "./workspace-selector";
+import UserAvatarMenu from "@/components/shared/user-avatar-menu";
+import { WorkspaceSelector } from "@/components/shared/workspace-selector";
 
 interface HeaderProps {
   // Simple boolean props - much easier to understand

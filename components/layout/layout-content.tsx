@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { Sidebar } from "@/components/sidebar";
-import { Header } from "./header";
-import { DevMenu } from "@/components/dev-menu";
-import { ErrorBoundary } from "./error-boundary";
+import { Sidebar } from "@/components/layout/sidebar";
+import { Header } from "@/components/layout/header";
+import { DevMenu } from "@/components/dev/dev-menu";
+import { ErrorBoundary } from "@/components/dev/error-boundary";
 import { Sidebar as SidebarIcon } from "lucide-react";
 
 interface LayoutContentProps {

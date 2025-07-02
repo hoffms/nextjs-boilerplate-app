@@ -1,15 +1,15 @@
 "use client"
 
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { CustomAvatar } from "@/components/custom/custom-avatar"
-import { VerificationBadge } from "@/components/custom/verification-badge"
-import { AvatarPattern } from "@/components/custom/avatar-pattern"
+import { CustomAvatar } from "@/components/shared/custom-avatar"
+import { VerificationBadge } from "@/components/shared/verification-badge"
+import { AvatarPattern } from "@/components/shared/avatar-pattern"
 import { BadgeCheck } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { SherryLogo } from "@/components/custom/sherry-logo"
+import { SherryLogo } from "@/components/shared/sherry-logo"
 import { Button } from "@/components/ui/button"
-import { TemplateCard } from "@/components/custom"
+import { TemplateCard } from "@/components/shared/template-card"
 
 const templates = [
   {

@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomAvatar } from "@/components/custom/custom-avatar";
+import { CustomAvatar } from "@/components/shared/custom-avatar";
 import { generateAvatar } from "@/lib/avatar-generator";
 
 interface AvatarPatternProps {

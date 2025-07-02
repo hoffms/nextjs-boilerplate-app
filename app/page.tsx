@@ -6,10 +6,10 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CustomAvatar } from "@/components/custom/custom-avatar"
-import { SherryBadge } from "@/components/custom/sherry-badge"
-import { VerificationBadge } from "@/components/custom/verification-badge"
-import { AvatarPattern } from "@/components/custom/avatar-pattern"
+import { CustomAvatar } from "@/components/shared/custom-avatar"
+import { SherryBadge } from "@/components/shared/sherry-badge"
+import { VerificationBadge } from "@/components/shared/verification-badge"
+import { AvatarPattern } from "@/components/shared/avatar-pattern"
 import { 
   ArrowRight, 
   Code, 
@@ -34,8 +34,8 @@ import {
 } from "lucide-react"
 import { Section } from "@/components/section"
 import Link from "next/link"
-import { SherryLogo } from "@/components/custom/sherry-logo"
-import { TemplateCard } from "@/components/custom"
+import { SherryLogo } from "@/components/shared/sherry-logo"
+import { TemplateCard } from "@/components/shared/template-card"
 
 export default function Home() {
   return (

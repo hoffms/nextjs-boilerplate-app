@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { VerificationBadge } from "@/components/custom/verification-badge"
-import { CustomAvatar } from "@/components/custom/custom-avatar"
-import { SherryBadge } from "@/components/custom/sherry-badge"
+import { VerificationBadge } from "@/components/shared/verification-badge"
+import { CustomAvatar } from "@/components/shared/custom-avatar"
+import { SherryBadge } from "@/components/shared/sherry-badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -25,19 +25,9 @@ import {
   Eye,
   EyeOff
 } from "lucide-react"
-import { SherryLogo } from "@/components/custom/sherry-logo"
-import { 
-  Header, 
-  guestHeaderConfig, 
-  loggedHeaderConfig, 
-  compactHeaderConfig,
-  mobileOnlyHeaderConfig,
-  desktopOnlyHeaderConfig,
-  minimalHeaderConfig,
-  workspaceOnlyHeaderConfig,
-  avatarOnlyHeaderConfig
-} from "@/components/header"
-import { Footer } from "@/components/custom/footer"
+import { SherryLogo } from "@/components/shared/sherry-logo"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/shared/footer"
 import { Section } from "@/components/section"
 
 export default function ComponentsPage() {
@@ -108,8 +98,8 @@ export default function ComponentsPage() {
             {/* Header Demo */}
             <Card>
               <CardHeader>
-                <CardTitle>Header Configurations</CardTitle>
-                <CardDescription>All header configuration variations showing different size-based visibility options.</CardDescription>
+                <CardTitle>Header Variations</CardTitle>
+                <CardDescription>Different header configurations using simple boolean props.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-8">
                 {/* Standard Configurations */}
@@ -117,40 +107,28 @@ export default function ComponentsPage() {
                   <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Standard Configurations</h4>
                   <div className="space-y-4">
                     <div>
-                      <div className="mb-2 font-semibold text-sm">Guest Header (No workspace/avatar)</div>
+                      <div className="mb-2 font-semibold text-sm">Guest Header (Logo + auth buttons)</div>
                       <div className="border rounded-lg overflow-hidden">
-                        <Header config={guestHeaderConfig} />
+                        <Header 
+                          showLogo={true}
+                          showAuthButtons={true}
+                          showUserMenu={false}
+                          showThemeToggle={true}
+                        />
                       </div>
                     </div>
                     <div>
-                      <div className="mb-2 font-semibold text-sm">Logged-in Header (Full workspace/avatar on all sizes)</div>
+                      <div className="mb-2 font-semibold text-sm">Logged-in Header (Full workspace/avatar)</div>
                       <div className="border rounded-lg overflow-hidden">
-                        <Header config={loggedHeaderConfig} isAuthenticated user={{ name: "Jane Doe", email: "jane@example.com" }} currentWorkspace="Jane's Workspace" workspaces={[{ id: "1", name: "Jane's Workspace", type: "personal" }]} notificationCount={2} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Size-Based Variations */}
-                <div>
-                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Size-Based Variations</h4>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="mb-2 font-semibold text-sm">Compact Header (Mobile + Desktop, no Tablet)</div>
-                      <div className="border rounded-lg overflow-hidden">
-                        <Header config={compactHeaderConfig} isAuthenticated user={{ name: "John Doe", email: "john@example.com" }} currentWorkspace="John's Workspace" workspaces={[{ id: "1", name: "John's Workspace", type: "personal" }]} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mb-2 font-semibold text-sm">Mobile-Only Header (Workspace/avatar only in mobile drawer)</div>
-                      <div className="border rounded-lg overflow-hidden">
-                        <Header config={mobileOnlyHeaderConfig} isAuthenticated user={{ name: "Alice Smith", email: "alice@example.com" }} currentWorkspace="Alice's Workspace" workspaces={[{ id: "1", name: "Alice's Workspace", type: "personal" }]} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mb-2 font-semibold text-sm">Desktop-Only Header (Workspace/avatar only on desktop)</div>
-                      <div className="border rounded-lg overflow-hidden">
-                        <Header config={desktopOnlyHeaderConfig} isAuthenticated user={{ name: "Bob Wilson", email: "bob@example.com" }} currentWorkspace="Bob's Workspace" workspaces={[{ id: "1", name: "Bob's Workspace", type: "personal" }]} />
+                        <Header 
+                          showLogo={true}
+                          showAuthButtons={false}
+                          showUserMenu={true}
+                          showThemeToggle={true}
+                          user={{ name: "Jane Doe", email: "jane@example.com" }}
+                          currentWorkspace="Jane's Workspace"
+                          workspaces={[{ id: "1", name: "Jane's Workspace", type: "personal" }]}
+                        />
                       </div>
                     </div>
                   </div>
@@ -163,49 +141,63 @@ export default function ComponentsPage() {
                     <div>
                       <div className="mb-2 font-semibold text-sm">Minimal Header (Logo + theme toggle only)</div>
                       <div className="border rounded-lg overflow-hidden">
-                        <Header config={minimalHeaderConfig} isAuthenticated user={{ name: "Minimal User", email: "minimal@example.com" }} currentWorkspace="Minimal Workspace" workspaces={[{ id: "1", name: "Minimal Workspace", type: "personal" }]} />
+                        <Header 
+                          showLogo={true}
+                          showAuthButtons={false}
+                          showUserMenu={false}
+                          showThemeToggle={true}
+                        />
                       </div>
                     </div>
                     <div>
                       <div className="mb-2 font-semibold text-sm">Workspace-Only Header (No avatar)</div>
                       <div className="border rounded-lg overflow-hidden">
-                        <Header config={workspaceOnlyHeaderConfig} isAuthenticated user={{ name: "Workspace User", email: "workspace@example.com" }} currentWorkspace="Workspace Only" workspaces={[{ id: "1", name: "Workspace Only", type: "personal" }]} />
+                        <Header 
+                          showLogo={true}
+                          showAuthButtons={false}
+                          showUserMenu={false}
+                          showThemeToggle={true}
+                          currentWorkspace="Workspace Only"
+                          workspaces={[{ id: "1", name: "Workspace Only", type: "personal" }]}
+                        />
                       </div>
                     </div>
                     <div>
                       <div className="mb-2 font-semibold text-sm">Avatar-Only Header (No workspace selector)</div>
                       <div className="border rounded-lg overflow-hidden">
-                        <Header config={avatarOnlyHeaderConfig} isAuthenticated user={{ name: "Avatar User", email: "avatar@example.com" }} currentWorkspace="Avatar Workspace" workspaces={[{ id: "1", name: "Avatar Workspace", type: "personal" }]} />
+                        <Header 
+                          showLogo={true}
+                          showAuthButtons={false}
+                          showUserMenu={true}
+                          showThemeToggle={true}
+                          user={{ name: "Avatar User", email: "avatar@example.com" }}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Configuration Reference */}
+                {/* Props Reference */}
                 <div>
-                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Configuration Reference</h4>
+                  <h4 className="text-lg font-semibold mb-4 text-muted-foreground">Props Reference</h4>
                   <div className="bg-muted/50 p-4 rounded-lg text-sm">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <h5 className="font-semibold mb-2">Size Breakpoints:</h5>
+                        <h5 className="font-semibold mb-2">Boolean Props:</h5>
                         <ul className="space-y-1 text-muted-foreground">
-                          <li>• <strong>Mobile:</strong> sm and below (mobile drawer)</li>
-                          <li>• <strong>Tablet:</strong> md to lg (center section)</li>
-                          <li>• <strong>Desktop:</strong> xl and above (right section)</li>
+                          <li>• <strong>showLogo:</strong> Display the logo</li>
+                          <li>• <strong>showAuthButtons:</strong> Show sign in/out buttons</li>
+                          <li>• <strong>showUserMenu:</strong> Show user avatar menu</li>
+                          <li>• <strong>showThemeToggle:</strong> Show theme toggle</li>
                         </ul>
                       </div>
                       <div>
-                        <h5 className="font-semibold mb-2">Configuration Structure:</h5>
-                        <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
-{`workspaceSelector: {
-  show: boolean,
-  sizes: {
-    mobile: boolean,
-    tablet: boolean,
-    desktop: boolean
-  }
-}`}
-                        </pre>
+                        <h5 className="font-semibold mb-2">Data Props:</h5>
+                        <ul className="space-y-1 text-muted-foreground">
+                          <li>• <strong>user:</strong> User data object</li>
+                          <li>• <strong>currentWorkspace:</strong> Active workspace</li>
+                          <li>• <strong>workspaces:</strong> Available workspaces</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
